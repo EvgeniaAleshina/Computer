@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище ComputerModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Accessories">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IDManufacture" Type="int" Nullable="false" />
+    <Property Name="Cost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CountOnStorage" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Firstname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="12" />
+    <Property Name="Email" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IDManufacture" Type="int" Nullable="false" />
+    <Property Name="Cost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CountOnStorage" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Manufacture">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SaleAccessories">
+    <Key>
+      <PropertyRef Name="IDAccessories" />
+      <PropertyRef Name="IDSeller" />
+      <PropertyRef Name="IDCustomer" />
+      <PropertyRef Name="Date" />
+    </Key>
+    <Property Name="IDAccessories" Type="int" Nullable="false" />
+    <Property Name="IDSeller" Type="int" Nullable="false" />
+    <Property Name="IDCustomer" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="Sum" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SaleItem">
+    <Key>
+      <PropertyRef Name="IDItem" />
+      <PropertyRef Name="IDSeller" />
+      <PropertyRef Name="IDCustomer" />
+      <PropertyRef Name="Date" />
+    </Key>
+    <Property Name="IDItem" Type="int" Nullable="false" />
+    <Property Name="IDSeller" Type="int" Nullable="false" />
+    <Property Name="IDCustomer" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="Sum" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SaleService">
+    <Key>
+      <PropertyRef Name="IDService" />
+      <PropertyRef Name="IDSeller" />
+      <PropertyRef Name="IDCustomer" />
+      <PropertyRef Name="Date" />
+    </Key>
+    <Property Name="IDService" Type="int" Nullable="false" />
+    <Property Name="IDSeller" Type="int" Nullable="false" />
+    <Property Name="IDCustomer" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Sum" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Seller">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Firstname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="12" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6013: Первичный ключ в таблице или представлении "Computer.dbo.SellerItem" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+        <EntityType Name="SellerItem">
+          <Property Name="IDItem" Type="int" />
+          <Property Name="ID" Type="nchar" MaxLength="10" />
+        </EntityType>-->
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Cost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Access" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Accessories_Manufacture">
+    <End Role="Manufacture" Type="Self.Manufacture" Multiplicity="1" />
+    <End Role="Accessories" Type="Self.Accessories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Accessories">
+        <PropertyRef Name="IDManufacture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_Manufacture">
+    <End Role="Manufacture" Type="Self.Manufacture" Multiplicity="1" />
+    <End Role="Item" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manufacture">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="IDManufacture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleAccessories_Accessories">
+    <End Role="Accessories" Type="Self.Accessories" Multiplicity="1" />
+    <End Role="SaleAccessories" Type="Self.SaleAccessories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accessories">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SaleAccessories">
+        <PropertyRef Name="IDAccessories" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleAccessories_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="SaleAccessories" Type="Self.SaleAccessories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SaleAccessories">
+        <PropertyRef Name="IDCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleAccessories_Seller">
+    <End Role="Seller" Type="Self.Seller" Multiplicity="1" />
+    <End Role="SaleAccessories" Type="Self.SaleAccessories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seller">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SaleAccessories">
+        <PropertyRef Name="IDSeller" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleItem_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="SaleItem" Type="Self.SaleItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SaleItem">
+        <PropertyRef Name="IDCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleItem_Item">
+    <End Role="Item" Type="Self.Item" Multiplicity="1" />
+    <End Role="SaleItem" Type="Self.SaleItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SaleItem">
+        <PropertyRef Name="IDItem" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleItem_Seller">
+    <End Role="Seller" Type="Self.Seller" Multiplicity="1" />
+    <End Role="SaleItem" Type="Self.SaleItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seller">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SaleItem">
+        <PropertyRef Name="IDSeller" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleService_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="SaleService" Type="Self.SaleService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SaleService">
+        <PropertyRef Name="IDCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleService_Seller">
+    <End Role="Seller" Type="Self.Seller" Multiplicity="1" />
+    <End Role="SaleService" Type="Self.SaleService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seller">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SaleService">
+        <PropertyRef Name="IDSeller" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleService_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="1" />
+    <End Role="SaleService" Type="Self.SaleService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SaleService">
+        <PropertyRef Name="IDService" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Seller_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Seller" Type="Self.Seller" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Seller">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище ComputerModelContainer">
+    <EntitySet Name="Accessories" EntityType="Self.Accessories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Manufacture" EntityType="Self.Manufacture" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleAccessories" EntityType="Self.SaleAccessories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleItem" EntityType="Self.SaleItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleService" EntityType="Self.SaleService" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Seller" EntityType="Self.Seller" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Accessories_Manufacture" Association="Self.FK_Accessories_Manufacture">
+      <End Role="Manufacture" EntitySet="Manufacture" />
+      <End Role="Accessories" EntitySet="Accessories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_Manufacture" Association="Self.FK_Item_Manufacture">
+      <End Role="Manufacture" EntitySet="Manufacture" />
+      <End Role="Item" EntitySet="Item" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleAccessories_Accessories" Association="Self.FK_SaleAccessories_Accessories">
+      <End Role="Accessories" EntitySet="Accessories" />
+      <End Role="SaleAccessories" EntitySet="SaleAccessories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleAccessories_Customer" Association="Self.FK_SaleAccessories_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="SaleAccessories" EntitySet="SaleAccessories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleAccessories_Seller" Association="Self.FK_SaleAccessories_Seller">
+      <End Role="Seller" EntitySet="Seller" />
+      <End Role="SaleAccessories" EntitySet="SaleAccessories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleItem_Customer" Association="Self.FK_SaleItem_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="SaleItem" EntitySet="SaleItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleItem_Item" Association="Self.FK_SaleItem_Item">
+      <End Role="Item" EntitySet="Item" />
+      <End Role="SaleItem" EntitySet="SaleItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleItem_Seller" Association="Self.FK_SaleItem_Seller">
+      <End Role="Seller" EntitySet="Seller" />
+      <End Role="SaleItem" EntitySet="SaleItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleService_Customer" Association="Self.FK_SaleService_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="SaleService" EntitySet="SaleService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleService_Seller" Association="Self.FK_SaleService_Seller">
+      <End Role="Seller" EntitySet="Seller" />
+      <End Role="SaleService" EntitySet="SaleService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleService_Service" Association="Self.FK_SaleService_Service">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="SaleService" EntitySet="SaleService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Seller_User" Association="Self.FK_Seller_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Seller" EntitySet="Seller" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,37 @@
+﻿<Page x:Class="Computer.Pages.EditPages.CustomerEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d" 
+      d:DesignHeight="210" d:DesignWidth="300"
+      Title="CustomerEditPage">
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="2*"/>
+		</Grid.ColumnDefinitions>
+		<TextBlock Text="Фамилия" Grid.Row="0"/>
+		<TextBlock Text="Имя" Grid.Row="1"/>
+		<TextBlock Text="Отчество" Grid.Row="2"/>
+		<TextBlock Text="Телефон" Grid.Row="3"/>
+		<TextBlock Text="Почта" Grid.Row="4"/>
+
+		<TextBox Name="TbSurname" Grid.Row="0" Grid.Column="1" Text="{Binding Surname}"/>
+		<TextBox Name="TbFirstname" Grid.Row="1" Grid.Column="1" Text="{Binding Firstname}"/>
+		<TextBox Name="TbPatronymic" Grid.Row="2" Grid.Column="1" Text="{Binding Patronymic}"/>
+		<TextBox Name="TbPhone" Grid.Row="3" Grid.Column="1" Text="{Binding Phone}"/>
+		<TextBox Name="TbEmail" Grid.Row="4" Grid.Column="1" Text="{Binding Email}"/>
+
+		<Button Name="BtnAdd" Click="BtnAdd_Click" Content="Добавить"  Grid.Row="5" Grid.ColumnSpan="2"/>
+	</Grid>
+</Page>

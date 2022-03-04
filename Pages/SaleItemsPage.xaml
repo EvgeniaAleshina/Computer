@@ -1,0 +1,50 @@
+﻿<Page x:Class="Computer.Pages.SaleItems"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Computer.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SaleItems" Loaded="SaleItems_OnLoaded">
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="50"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="50"/>
+		</Grid.RowDefinitions>
+
+		<StackPanel Orientation="Horizontal">
+			<TextBlock Text="Сортировка: "/>
+			<ComboBox Name="CbSort" SelectionChanged="CbSort_OnSelectionChanged"/>
+			<TextBlock Text=" Фильтрация: "/>
+			<ComboBox Name="CbFilter" SelectionChanged="CbFilter_OnSelectionChanged"/>
+			<TextBlock Text=" Поиск: "/>
+			<TextBox Name="TbSearch" TextChanged="TbSearch_OnTextChanged"/>
+		</StackPanel>
+
+		<DataGrid Grid.Row="1" Name="DGridSaleItems" AutoGenerateColumns="False" IsReadOnly="True">
+			<DataGrid.Columns>
+				<DataGridTextColumn Width="*" Header="Товары" Binding="{Binding Item.Title}"/>
+				<DataGridTextColumn Width="*" Header="Продавец" Binding="{Binding Seller.Fullname}"/>
+				<DataGridTextColumn Width="*" Header="Покупатель" Binding="{Binding Customer.Fullname}"/>
+				<DataGridTextColumn Width="*" Header="Дата покупки" Binding="{Binding Date}"/>
+				<DataGridTextColumn Width="*" Header="Количество" Binding="{Binding Count}"/>
+				<DataGridTextColumn Width="*" Header="Сумма" Binding="{Binding Sum}"/>
+				<DataGridTemplateColumn Width="*">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<Button x:Name="BtnEdit" Content="Редактировать" Click="BtnEdit_Click"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+			</DataGrid.Columns>
+		</DataGrid>
+
+		<StackPanel Orientation="Horizontal" Grid.Row="2">
+			<Button x:Name="BtnDelete" Content="Удалить" Click="BtnDelete_Click"/>
+			<Button x:Name="BtnAdd" Content="Добавить" Click="BtnAdd_Click"/>
+		</StackPanel>
+	</Grid>
+</Page>

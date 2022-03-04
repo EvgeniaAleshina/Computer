@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище dbMonitoringModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Culture">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar(max)" />
+    <Property Name="Status" Type="nvarchar(max)" />
+    <Property Name="Period" Type="nvarchar(max)" />
+    <Property Name="Ph" Type="varchar(max)" />
+    <Property Name="Phosphor" Type="varchar(max)" />
+    <Property Name="Potassium" Type="varchar(max)" />
+    <Property Name="Magnesium" Type="varchar(max)" />
+    <Property Name="Calcium" Type="varchar(max)" />
+    <Property Name="Humidity" Type="varchar(max)" />
+    <Property Name="Nitrogen" Type="varchar(max)" />
+    <Property Name="Temperature" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Fertilizer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Asot" Type="varchar(max)" />
+    <Property Name="PhosphorusOxide" Type="varchar(max)" />
+    <Property Name="PotassiumOxide" Type="varchar(max)" />
+    <Property Name="CalciumOxide" Type="varchar(max)" />
+    <Property Name="MagnesiumOxide" Type="varchar(max)" />
+    <Property Name="SulfurOxide" Type="varchar(max)" />
+    <Property Name="Borum" Type="varchar(max)" />
+    <Property Name="Natrium" Type="varchar(max)" />
+    <Property Name="Zincum" Type="varchar(max)" />
+    <Property Name="Cuprum" Type="varchar(max)" />
+    <Property Name="Manganum" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Field">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="District" Type="varchar(max)" />
+    <Property Name="Number" Type="varchar(max)" />
+    <Property Name="Position" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Seeding">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="IdField" Type="int" />
+    <Property Name="IdCulture" Type="int" />
+    <Property Name="Status" Type="varchar(max)" />
+    <Property Name="Date" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="varchar(max)" />
+    <Property Name="Password" Type="varchar(max)" />
+    <Property Name="Access" Type="int" />
+  </EntityType>
+  <Association Name="FK_Seeding_Field">
+    <End Role="Field" Type="Self.Field" Multiplicity="0..1" />
+    <End Role="Seeding" Type="Self.Seeding" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Field">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Seeding">
+        <PropertyRef Name="IdField" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Seeding_Table_1">
+    <End Role="Culture" Type="Self.Culture" Multiplicity="0..1" />
+    <End Role="Seeding" Type="Self.Seeding" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Culture">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Seeding">
+        <PropertyRef Name="IdCulture" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище dbMonitoringModelContainer">
+    <EntitySet Name="Culture" EntityType="Self.Culture" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fertilizer" EntityType="Self.Fertilizer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Field" EntityType="Self.Field" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Seeding" EntityType="Self.Seeding" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Seeding_Field" Association="Self.FK_Seeding_Field">
+      <End Role="Field" EntitySet="Field" />
+      <End Role="Seeding" EntitySet="Seeding" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Seeding_Table_1" Association="Self.FK_Seeding_Table_1">
+      <End Role="Culture" EntitySet="Culture" />
+      <End Role="Seeding" EntitySet="Seeding" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

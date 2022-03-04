@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="65cc45fe9fbf4f389a1f86cbd8c85c10" Name="Diagram1">
+        <EntityTypeShape EntityType="ComputerModel.Accessory" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerModel.Customer" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerModel.Item" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerModel.Manufacture" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerModel.SaleAccessory" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerModel.SaleItem" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerModel.SaleService" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerModel.Seller" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerModel.Service" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerModel.User" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="ComputerModel.FK_Accessories_Manufacture" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerModel.FK_SaleAccessories_Accessories" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerModel.FK_SaleAccessories_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerModel.FK_SaleItem_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerModel.FK_SaleService_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerModel.FK_Item_Manufacture" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerModel.FK_SaleItem_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerModel.FK_SaleAccessories_Seller" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerModel.FK_SaleItem_Seller" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerModel.FK_SaleService_Seller" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerModel.FK_SaleService_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerModel.FK_Seller_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
